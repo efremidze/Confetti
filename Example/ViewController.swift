@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Confetti
 
 class ViewController: UIViewController {
 

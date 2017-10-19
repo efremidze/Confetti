@@ -13,6 +13,7 @@
 		714615D31F97FD6A001F738C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714615D11F97FD6A001F738C /* Main.storyboard */; };
 		714615D51F97FD6A001F738C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714615D41F97FD6A001F738C /* Assets.xcassets */; };
 		714615D81F97FD6A001F738C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714615D61F97FD6A001F738C /* LaunchScreen.storyboard */; };
+		7151FBC11F988DBE00FD918C /* Confetti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151FBC01F988DBE00FD918C /* Confetti.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		714615D41F97FD6A001F738C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		714615D71F97FD6A001F738C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		714615D91F97FD6A001F738C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7151FBC01F988DBE00FD918C /* Confetti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confetti.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				7121D7101F97FD3B00A6DAF3 /* Confetti.h */,
+				7151FBC01F988DBE00FD918C /* Confetti.swift */,
 				7121D7111F97FD3B00A6DAF3 /* Info.plist */,
 			);
 			name = Confetti;
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					7121D70C1F97FD3B00A6DAF3 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					714615CA1F97FD6A001F738C = {
@@ -200,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7151FBC11F988DBE00FD918C /* Confetti.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +355,7 @@
 		7121D7161F97FD3B00A6DAF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -362,6 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.Confetti;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,6 +377,7 @@
 		7121D7171F97FD3B00A6DAF3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
