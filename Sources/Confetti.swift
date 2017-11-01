@@ -8,4 +8,4 @@
 
 import Foundation
 
-struct Confetti {}
+public struct Confetti {}

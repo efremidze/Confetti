@@ -14,7 +14,33 @@
 		714615D51F97FD6A001F738C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714615D41F97FD6A001F738C /* Assets.xcassets */; };
 		714615D81F97FD6A001F738C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714615D61F97FD6A001F738C /* LaunchScreen.storyboard */; };
 		7151FBC11F988DBE00FD918C /* Confetti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151FBC01F988DBE00FD918C /* Confetti.swift */; };
+		71C2ADB61FA7BC06007B50B9 /* Confetti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7121D70D1F97FD3B00A6DAF3 /* Confetti.framework */; };
+		71C2ADB71FA7BC06007B50B9 /* Confetti.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7121D70D1F97FD3B00A6DAF3 /* Confetti.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		71C2ADB81FA7BC06007B50B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7121D7041F97FD3B00A6DAF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7121D70C1F97FD3B00A6DAF3;
+			remoteInfo = Confetti;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		71C2ADBA1FA7BC06007B50B9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				71C2ADB71FA7BC06007B50B9 /* Confetti.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7121D70D1F97FD3B00A6DAF3 /* Confetti.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Confetti.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C2ADB61FA7BC06007B50B9 /* Confetti.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,10 +156,12 @@
 				714615C71F97FD6A001F738C /* Sources */,
 				714615C81F97FD6A001F738C /* Frameworks */,
 				714615C91F97FD6A001F738C /* Resources */,
+				71C2ADBA1FA7BC06007B50B9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				71C2ADB91FA7BC06007B50B9 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -218,6 +247,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71C2ADB91FA7BC06007B50B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7121D70C1F97FD3B00A6DAF3 /* Confetti */;
+			targetProxy = 71C2ADB81FA7BC06007B50B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		714615D11F97FD6A001F738C /* Main.storyboard */ = {
@@ -398,6 +435,7 @@
 		714615DA1F97FD6A001F738C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Example/Info.plist;
@@ -412,6 +450,7 @@
 		714615DB1F97FD6A001F738C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Example/Info.plist;
