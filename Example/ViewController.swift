@@ -31,27 +31,27 @@ class ConfettiView: UIView {
 //        emitter.emitterCells = UIColor.all.map { confetti(color: $0, intensity: 0.1, image: #imageLiteral(resourceName: "circle")) }
 //    }
     
-    func stop() {
+//    func stop() {
 //        emitter.birthRate = 0
-    }
+//    }
     
-    private func confetti(color: UIColor, intensity: Float, image: UIImage) -> CAEmitterCell {
-        let confetti = CAEmitterCell()
-        confetti.birthRate = 6.0 * intensity
-        confetti.lifetime = 14.0 * intensity
-        confetti.lifetimeRange = 0
-        confetti.color = color.cgColor
-        confetti.velocity = CGFloat(350.0 * intensity)
-        confetti.velocityRange = CGFloat(80.0 * intensity)
-        confetti.emissionLongitude = .pi
-        confetti.emissionRange = .pi / 4
-        confetti.spin = CGFloat(3.5 * intensity)
-        confetti.spinRange = CGFloat(4.0 * intensity)
-        confetti.scaleRange = CGFloat(intensity)
-        confetti.scaleSpeed = CGFloat(-0.1 * intensity)
-        confetti.contents = image.cgImage
-        return confetti
-    }
+//    private func confetti(color: UIColor, intensity: Float, image: UIImage) -> CAEmitterCell {
+//        let confetti = CAEmitterCell()
+//        confetti.birthRate = 6.0 * intensity
+//        confetti.lifetime = 14.0 * intensity
+//        confetti.lifetimeRange = 0
+//        confetti.color = color.cgColor
+//        confetti.velocity = CGFloat(350.0 * intensity)
+//        confetti.velocityRange = CGFloat(80.0 * intensity)
+//        confetti.emissionLongitude = .pi
+//        confetti.emissionRange = .pi / 4
+//        confetti.spin = CGFloat(3.5 * intensity)
+//        confetti.spinRange = CGFloat(4.0 * intensity)
+//        confetti.scaleRange = CGFloat(intensity)
+//        confetti.scaleSpeed = CGFloat(-0.1 * intensity)
+//        confetti.contents = image.cgImage
+//        return confetti
+//    }
     
     // MARK: -
     
@@ -65,11 +65,14 @@ class ConfettiView: UIView {
 //        emitter.emitterShape = kCAEmitterLayerCircle
 //        emitter.emitterMode = kCAEmitterLayerVolume
 //        emitter.renderMode = kCAEmitterLayerAdditive
+        emitter.renderMode = kCAEmitterLayerOldestFirst
 //        emitter.seed = (arc4random() % 1000) + 1
         
         emitter.emitterCells = cells
         
         emitter.beginTime = CACurrentMediaTime()
+        
+        emitter.preservesDepth = true
         
         layer.addSublayer(emitter)
     }
@@ -78,6 +81,7 @@ class ConfettiView: UIView {
         let cell = CAEmitterCell()
         cell.birthRate = 10
         cell.lifetime = 7
+        cell.lifetimeRange = 3
         cell.velocity = 175
         cell.velocityRange = 40
         cell.emissionLongitude = .pi
@@ -108,4 +112,61 @@ extension UIColor {
     class var purple: UIColor { return UIColor(red: 88, green: 86, blue: 214) }
     class var pink: UIColor { return UIColor(red: 255, green: 45, blue: 85) }
     static let all: [UIColor] = [red, orange, yellow, green, tealBlue, blue, purple, pink]
+}
+
+class StarsOverlay: UIView {
+    override class var layerClass : AnyClass {
+        return CAEmitterLayer.self
+    }
+    private var emitter: CAEmitterLayer {
+        return layer as! CAEmitterLayer
+    }
+    private var particle: CAEmitterCell!
+    func setup() {
+        emitter.emitterMode = kCAEmitterLayerOutline
+        emitter.emitterShape = kCAEmitterLayerCircle
+        emitter.renderMode = kCAEmitterLayerOldestFirst
+        emitter.preservesDepth = true
+        
+        particle = CAEmitterCell()
+        
+        particle.contents = UIImage(named: "spark")!.cgImage
+        particle.birthRate = 10
+        
+        particle.lifetime = 50
+        particle.lifetimeRange = 5
+        
+        particle.velocity = 20
+        particle.velocityRange = 10
+        
+        particle.scale = 0.02
+        particle.scaleRange = 0.1
+        particle.scaleSpeed = 0.02
+        
+        emitter.emitterCells = [particle]
+    }
+    
+    var emitterTimer: Timer?
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        
+        if self.window != nil {
+            if emitterTimer == nil {
+                emitterTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [unowned self] timer in
+                    let sizeWidth = max(self.bounds.width, self.bounds.height)
+                    let radius = CGFloat(arc4random()).truncatingRemainder(dividingBy: sizeWidth)
+                    self.emitter.emitterSize = CGSize(width: radius, height: radius)
+                    self.particle.birthRate = 10 + sqrt(Float(radius))
+                }
+            }
+        } else if emitterTimer != nil {
+            emitterTimer?.invalidate()
+            emitterTimer = nil
+        }
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        emitter.emitterPosition = self.center
+        emitter.emitterSize = self.bounds.size
+    }
 }
